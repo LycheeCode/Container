@@ -38,7 +38,7 @@ class Container
      * @param object|string|closure $class
      * @return void
      */
-    public function bind($alias, $class)
+    public function bind(string $alias, $class)
     {
         $this->register($alias, $class);
     }
@@ -50,7 +50,7 @@ class Container
      * @param object|string|closure $class
      * @return void
      */
-    public function singleton($alias, $class)
+    public function singleton(string $alias, $class)
     {
         $this->register($alias, $class, true);
     }
@@ -63,7 +63,7 @@ class Container
      * @param boolean $is_singleton
      * @return void
      */
-    private function register($alias, $class, $is_singleton = false)
+    private function register(string $alias, $class, bool $is_singleton = false)
     {
         // 标记单例
         if ($is_singleton) {
@@ -94,9 +94,9 @@ class Container
      *
      * @param string $alias
      * @param array $params 构造方法中的参数
-     * @return void
+     * @return object
      */
-    public function make($alias, $params = [])
+    public function make(string $alias, array $params = []):object
     {
         if (! isset($this->instances[$alias])) {
             if (! isset($this->binds[$alias])) {
@@ -120,7 +120,7 @@ class Container
      * @return object
      * @throws \Exception
      */
-    private function getNewInstance($alias, $params = [])
+    private function getNewInstance(string $alias, array $params = []):object
     {
         $class = $this->binds[$alias];
 
@@ -158,7 +158,7 @@ class Container
      * @return object
      * @throws \Exception
      */
-    private function getNewInstanceByClassName($className)
+    private function getNewInstanceByClassName(string $className):object
     {
         $boundClasses = array_flip($this->binds);
         if (isset($boundClasses[$className])) {
