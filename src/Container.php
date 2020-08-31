@@ -94,13 +94,14 @@ class Container
      *
      * @param string $alias
      * @param array $params 构造方法中的参数
+     * @throws \Exception
      * @return object
      */
     public function make(string $alias, array $params = []):object
     {
         if (! isset($this->instances[$alias])) {
             if (! isset($this->binds[$alias])) {
-                return null;
+                throw new \Exception('Object[' . $alias . '] not found.');
             }
             $this->instances[$alias] = $this->getNewInstance($alias, $params);
         }
