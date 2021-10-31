@@ -143,7 +143,7 @@ class Container
 
                     // 如果参数是某个类，则从容器中自动注入
                     if ($interface) {
-                        $objParams[] = $this->getNewInstanceByClassName($instance->name);
+                        $objParams[] = $this->getNewInstanceByClassName($interface->name);
                     }
                 }
             }
