@@ -97,7 +97,7 @@ class Container
      * @throws \Exception
      * @return object
      */
-    public function make(string $alias, array $params = []):object
+    public function make(string $alias, array $params = []): object
     {
         if (! isset($this->instances[$alias])) {
             if (! isset($this->binds[$alias])) {
@@ -121,7 +121,7 @@ class Container
      * @return object
      * @throws \Exception
      */
-    private function getNewInstance(string $alias, array $params = []):object
+    private function getNewInstance(string $alias, array $params = []): object
     {
         $class = $this->binds[$alias];
 
@@ -159,7 +159,7 @@ class Container
      * @return object
      * @throws \Exception
      */
-    private function getNewInstanceByClassName(string $className):object
+    private function getNewInstanceByClassName(string $className): object
     {
         $boundClasses = array_flip($this->binds);
         if (isset($boundClasses[$className])) {
